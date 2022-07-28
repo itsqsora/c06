@@ -12,36 +12,18 @@
 
 #include <unistd.h>
 
-void	puts(char c)
-{
-	write(1, &c, 1);
-}
-
-void	putstr(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		putstr(str[i]);
-		i++;
-	}
-}
 
 int	main(int argc, char **argv)
 {
-	int	i;
+	int i;
 
 	i = 1;
-	if (argc > 1)
+	while (i < argc)
 	{
-		while (argv[i])
-		{
-			putstr(argv[i]);
-			puts('\n');
-			i++;
-		}
+		while (*argv[i])
+			write(1, argv[i]++, 1);
+		write(1, "\n", 1);
+		++i;
 	}
 	return (0);
 }
